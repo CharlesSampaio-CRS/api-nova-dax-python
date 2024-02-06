@@ -17,11 +17,6 @@ client = MongoClient(URL_MONGO)
 db = client['cryptbot']
 collection = db['balance']
 
-#Get Balance Nova Dax 
-@app.route(NOVA_DAX_HOST + "/webhook")
-def web_hook_asset():
-    data_quote = cmc.cryptocurrency_quotes_latest(symbol='ETH', convert='BRL')
-    return json.dumps(str(data_quote))
 
 #Get Balance Nova Dax 
 @app.route(NOVA_DAX_HOST + "/balance")
@@ -64,11 +59,10 @@ def get_ticker(symbol):
     return nova_client.get_ticker(symbol)['data']['lastPrice']
 
 #Verifiry % in 10 minutos 
-''' se a crypto selecionada tiver com valor 10% Up -- cria order de venda, se moeda tiver abaixo de 10% e tiver saldo maior que 25 reias. abre order de compra
--- verificar % de variacao da moeda 
--- verificar se nao tem ordem aberta 
--- verificar se tem saldo 
-
+''' 
+-- Get the price of crypto in the novaDax wallet and calculate the percentage of gain/loss
+-- Create job to create purchase and sale order based on the value of the crypto
+...
 '''
 
 if __name__ == '__main__':
